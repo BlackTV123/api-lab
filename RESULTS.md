@@ -3,6 +3,8 @@
 ## Part 0
 - Step 0.1, the number of pizza names: 18
 
+- Step 0.3, status code of the request without a token: 401
+
 - Step 0.4, the name of your pizza: The Happy Calzone
 
 - Step 0.16, blocks of "how many of the three tools are excluded": 0, 1, 2, and 3 tools.
@@ -65,3 +67,11 @@
 8. API tests directly inspect status codes, JSON fields, and responses
    to invalid inputs. Tests through web pages can check visual layout
    and whether buttons and forms work correctly for the user.
+
+## Defect report
+
+- Title: Excluding all tools causes an internal server error.
+- Request: POST https://quickpizza.grafana.com/api/pizza with a valid Authorization token, Content-Type: application/json, and body {"excludedTools":["Knife","Pizza cutter","Scissors"]}.
+- Expected result: 400 Bad Request with a JSON error message explaining that no pizza can satisfy the restrictions.
+- Actual result: 500 Internal Server Error with an empty body (Content-Length: 0), confirmed using curl.
+- Severity: Medium — an unsatisfiable request causes a server error instead of a useful validation response.

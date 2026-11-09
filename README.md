@@ -1,3 +1,28 @@
+## Setup
+
+Requires Python 3.10 or newer.
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+```
+
+## Run tests
+
+```powershell
+pytest -v
+```
+
+## Generate the HTML report
+
+```powershell
+pytest -v --html=report.html --self-contained-html
+```
+
+The recorded run contains 32 passed tests and 1 expected failure.
+The expected failure tracks the defect described in RESULTS.md.
+
 ## Input domain model: POST /api/ratings
 
 | Characteristic | Blocks | Test values |
